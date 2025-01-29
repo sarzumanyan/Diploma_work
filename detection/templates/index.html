@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Real-Time Detection</h1>
+        <div class="video-feed">
+            <img src="{{ url_for('video') }}" alt="Video Feed">
+        </div>
+        <button id="start-btn">Start Detection</button>
+    </div>
+
+    <script>
+        document.getElementById("start-btn").addEventListener("click", function() {
+            alert("Detection started!");
+            // Here you can implement more actions, like logging or enabling features.
+        });
+    </script>
+</body>
+</html>
