@@ -1,7 +1,6 @@
 import cv2
 from detect_emotion import detect_emotion
-from detect_gaze import detect_gaze
-from detect_head import detect_head_movement
+from detect_head import detect_head_and_eye_movement
 from detect_objects import detect_objects
 
 cap = cv2.VideoCapture(0)
@@ -12,12 +11,10 @@ while True:
         break
 
     emotion = detect_emotion(frame)
-    # gaze = detect_gaze(frame)
-    head = detect_head_movement(frame)
+    head = detect_head_and_eye_movement(frame)
     frame = detect_objects(frame)
 
     cv2.putText(frame, f"Emotion: {emotion}", (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-    # cv2.putText(frame, f"Gaze: {gaze}", (50, 100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
     cv2.putText(frame, f"Head: {head}", (50, 150), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
     cv2.imshow("Real-Time Detection", frame)
