@@ -1,10 +1,10 @@
 import cv2
 import dlib
 import numpy as np
-import winsound  # Import winsound module for beep sound
+import winsound
 
 detector = dlib.get_frontal_face_detector()
-predictor = dlib.shape_predictor("C:/Users/ASUS/workspace/Polytech/Diploma/Diploma_work/models/head_movement_model/shape_predictor_68_face_landmarks.dat")  # Update with correct path
+predictor = dlib.shape_predictor("C:/Users/ASUS/workspace/Polytech/Diploma/Diploma_work/models/head_movement_model/shape_predictor_68_face_landmarks.dat")
 
 def detect_head_and_eye_movement(frame):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -14,11 +14,11 @@ def detect_head_and_eye_movement(frame):
         landmarks = predictor(gray, face)
         
         # Get the coordinates of the eyes
-        left_eye_y = (landmarks.part(37).y + landmarks.part(41).y) / 2  # Left eye vertical position
-        right_eye_y = (landmarks.part(43).y + landmarks.part(47).y) / 2  # Right eye vertical position
+        left_eye_y = (landmarks.part(37).y + landmarks.part(41).y) / 2
+        right_eye_y = (landmarks.part(43).y + landmarks.part(47).y) / 2
         face_top_y = face.top()
         face_bottom_y = face.bottom()
-        face_height = face_bottom_y - face_top_y  # Calculate face height
+        face_height = face_bottom_y - face_top_y
 
         # Get nose position and face width
         nose = landmarks.part(30).x
