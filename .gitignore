@@ -1,0 +1,6 @@
+/venv
+/detection/__pycache__
+/deployment/__pycache__
+/deployment/instance
+__pycache__/
+deployment/detections.db
