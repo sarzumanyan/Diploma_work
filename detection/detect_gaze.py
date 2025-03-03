@@ -60,11 +60,18 @@ def detect_head_and_eye_movement(image):
 
 if __name__ == "__main__":
     cap = cv2.VideoCapture(0)
+    frame_count = 0  # Initialize frame counter
 
     while True:
         ret, frame = cap.read()
         if not ret:
             break
+
+        frame_count += 1  # Increment frame counter
+
+        if frame_count % 3 != 0:
+            # Skip the frame if it's not the 3rd frame
+            continue
 
         # Detect head and eye movement
         status = detect_head_and_eye_movement(frame)

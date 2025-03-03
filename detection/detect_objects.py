@@ -19,11 +19,18 @@ def detect_objects(frame):
 
 if __name__ == "__main__":
     cap = cv2.VideoCapture(0)
+    frame_count = 0  # Initialize frame counter
 
     while True:
         ret, frame = cap.read()
         if not ret:
             break
+
+        frame_count += 1  # Increment frame counter
+
+        if frame_count % 3 != 0:
+            # Skip the frame if it's not the 3rd frame
+            continue
 
         detected_objects = detect_objects(frame)
 
