@@ -10,7 +10,7 @@ def detect_objects(frame):
         for box in r.boxes:
             x1, y1, x2, y2 = map(int, box.xyxy[0])
             label = model.names[int(box.cls[0])]
-            if label in ["cell phone", "book", "laptop"]:
+            if label in ["phone", "book", "laptop"]:
                 detected_objects.append(label)
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
                 cv2.putText(frame, label, (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)

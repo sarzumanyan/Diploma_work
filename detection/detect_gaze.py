@@ -29,13 +29,13 @@ def calculate_gaze_direction(landmarks, img_width, img_height):
 
     # Determine gaze direction
     if left_ratio > 0.6 and right_ratio > 0.6:
-        return "Looking Right"
+        return "Not Looking Center"
     elif left_ratio < 0.4 and right_ratio < 0.4:
-        return "Looking Left"
+        return "Not Looking Center"
     elif np.mean([left_center[1], right_center[1]]) < np.mean([left_eye[1][1], right_eye[1][1]]) - 5:
-        return "Looking Up"
+        return "Not Looking Center"
     elif np.mean([left_center[1], right_center[1]]) > np.mean([left_eye[4][1], right_eye[4][1]]) + 5:
-        return "Looking Down"
+        return "Not Looking Center"
     else:
         return "Looking Center"
 
@@ -51,7 +51,7 @@ def detect_head_and_eye_movement(image):
                 gaze_direction = calculate_gaze_direction(face_landmarks.landmark, img_width, img_height)
 
                 # Alert conditions
-                if gaze_direction in ["Looking Down", "Looking Left", "Looking Right"]:
+                if gaze_direction in ["Not Looking Center"]:
                     winsound.Beep(500, 200)  # Beep sound for alert
                     return f"ALERT: Gaze: {gaze_direction}"
 
