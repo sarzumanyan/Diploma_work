@@ -10,7 +10,7 @@ def detect_objects(frame):
         for box in r.boxes:
             x1, y1, x2, y2 = map(int, box.xyxy[0])
             label = model.names[int(box.cls[0])]
-            if label in ["cell phone", "book", "laptop"]:
+            if label in ["phone", "book", "laptop"]:
                 detected_objects.append(label)
                 cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
                 cv2.putText(frame, label, (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
@@ -19,11 +19,18 @@ def detect_objects(frame):
 
 if __name__ == "__main__":
     cap = cv2.VideoCapture(0)
+    frame_count = 0  # Initialize frame counter
 
     while True:
         ret, frame = cap.read()
         if not ret:
             break
+
+        frame_count += 1  # Increment frame counter
+
+        if frame_count % 3 != 0:
+            # Skip the frame if it's not the 3rd frame
+            continue
 
         detected_objects = detect_objects(frame)
 
